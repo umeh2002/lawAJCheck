@@ -6,6 +6,7 @@ import {
   registerLawyer,
   registerUser,
   resetPassword,
+  signInLawyer,
   signInUser,
   updateAvatar,
   verifyUser,
@@ -16,6 +17,7 @@ import {
   createLawyerValidator,
   createValidator,
   resetValidator,
+  signInLawyerValidator,
   signInValidator,
 } from "../utils/validator";
 import multer from "multer";
@@ -27,6 +29,9 @@ const router = Router();
 router.route("/register-user").post(validatorHandler(createValidator), registerUser);
 router.route("/register-lawyer").post(validatorHandler(createLawyerValidator), registerLawyer);
 router.route("/sign-in").post(validatorHandler(signInValidator), signInUser);
+
+router.route("/sign-in").post(validatorHandler(signInLawyerValidator), signInLawyer);
+
 router
   .route("/:token/change-password")
   .patch(validatorHandler(changeValidator), changePassword);

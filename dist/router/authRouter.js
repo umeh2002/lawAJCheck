@@ -13,6 +13,7 @@ const router = (0, express_1.Router)();
 router.route("/register-user").post((0, validatorHandler_1.default)(validator_1.createValidator), authController_1.registerUser);
 router.route("/register-lawyer").post((0, validatorHandler_1.default)(validator_1.createLawyerValidator), authController_1.registerLawyer);
 router.route("/sign-in").post((0, validatorHandler_1.default)(validator_1.signInValidator), authController_1.signInUser);
+router.route("/sign-in").post((0, validatorHandler_1.default)(validator_1.signInLawyerValidator), authController_1.signInLawyer);
 router
     .route("/:token/change-password")
     .patch((0, validatorHandler_1.default)(validator_1.changeValidator), authController_1.changePassword);

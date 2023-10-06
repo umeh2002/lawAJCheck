@@ -127,6 +127,48 @@ export const signInUser = async (req: Request, res: Response) => {
   }
 };
 
+export const signInLawyer = async (req: Request, res: Response) => {
+    try {
+      const { email, password } = req.body;
+  
+      const user = await prisma.authModel.findUnique({
+        where: { email },
+      });
+      if (user) {
+        const check = await bcrypt.compare(password, user.password);
+        if (check) {
+          if (user.verified && user.token === "") {
+            const token = jwt.sign({ id: user.id }, "secret");
+  
+            req.headers.authorization = `Bearer ${token}`;
+  
+            return res.status(201).json({
+              message: "success",
+              data: token,
+            });
+          } else {
+            return res.status(404).json({
+              message: "veriify your email address",
+            });
+          }
+        } else {
+          return res.status(404).json({
+            message: "invalid password",
+          });
+        }
+      } else {
+        return res.status(404).json({
+          message: "user not found",
+        });
+      }
+    } catch (error: any) {
+      return res.status(404).json({
+        message: "Error sign in user",
+        data: error.message,
+      });
+    }
+  };
+
 export const verifyUser = async (req: Request, res: Response) => {
   try {
     const { token } = req.params;

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeValidator = exports.resetValidator = exports.signInValidator = exports.createLawyerValidator = exports.createValidator = void 0;
+exports.changeValidator = exports.resetValidator = exports.signInLawyerValidator = exports.signInValidator = exports.createLawyerValidator = exports.createValidator = void 0;
 const joi_1 = __importDefault(require("joi"));
 // let regex =
 //   /^(?!.\s)(?=.[A-Z])(?=.[a-z])(?=.[0-9])(?=.[~`!@#$%^&()--+={}\[\]|\\:;"'<>,.?/_₹]).{10,16}$/;
@@ -21,6 +21,10 @@ exports.createLawyerValidator = joi_1.default.object({
     secret: joi_1.default.string().required()
 });
 exports.signInValidator = joi_1.default.object({
+    email: joi_1.default.string().email().lowercase().trim().required(),
+    password: joi_1.default.string().required(),
+});
+exports.signInLawyerValidator = joi_1.default.object({
     email: joi_1.default.string().email().lowercase().trim().required(),
     password: joi_1.default.string().required(),
 });

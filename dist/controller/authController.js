@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateAvatar = exports.deleteUser = exports.getAll = exports.changePassword = exports.resetPassword = exports.verifyUser = exports.signInUser = exports.registerLawyer = exports.registerUser = void 0;
+exports.updateAvatar = exports.deleteUser = exports.getAll = exports.changePassword = exports.resetPassword = exports.verifyUser = exports.signInLawyer = exports.signInUser = exports.registerLawyer = exports.registerUser = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -135,6 +135,49 @@ const signInUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.signInUser = signInUser;
+const signInLawyer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email, password } = req.body;
+        const user = yield prisma.authModel.findUnique({
+            where: { email },
+        });
+        if (user) {
+            const check = yield bcrypt_1.default.compare(password, user.password);
+            if (check) {
+                if (user.verified && user.token === "") {
+                    const token = jsonwebtoken_1.default.sign({ id: user.id }, "secret");
+                    req.headers.authorization = `Bearer ${token}`;
+                    return res.status(201).json({
+                        message: "success",
+                        data: token,
+                    });
+                }
+                else {
+                    return res.status(404).json({
+                        message: "veriify your email address",
+                    });
+                }
+            }
+            else {
+                return res.status(404).json({
+                    message: "invalid password",
+                });
+            }
+        }
+        else {
+            return res.status(404).json({
+                message: "user not found",
+            });
+        }
+    }
+    catch (error) {
+        return res.status(404).json({
+            message: "Error sign in user",
+            data: error.message,
+        });
+    }
+});
+exports.signInLawyer = signInLawyer;
 const verifyUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { token } = req.params;

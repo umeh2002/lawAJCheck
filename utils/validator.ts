@@ -22,6 +22,11 @@ export const signInValidator = joi.object({
   password: joi.string().required(),
 });
 
+export const signInLawyerValidator = joi.object({
+    email: joi.string().email().lowercase().trim().required(),
+    password: joi.string().required(),
+  });
+
 export const resetValidator = joi.object({
   email: joi.string().email().lowercase().trim().required(),
 });
