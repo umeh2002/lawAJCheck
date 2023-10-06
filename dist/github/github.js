@@ -11,7 +11,7 @@ const GitHubStrategy = passport_github2_1.default.Strategy;
 passport_1.default.use(new GitHubStrategy({
     clientID: "1b397d15caf372a81bbc",
     clientSecret: "0ee181027315268ccbb0db3310fbde9319d1be1d",
-    callbackURL: "https://ajlawtesting.onrender.com/github/callback",
+    callbackURL: "https://lawaj.onrender.com/github/callback",
 }, function (accessToken, refreshToken, profile, done) {
     return done(null, profile);
 }));

@@ -21,7 +21,7 @@ const GoogleStrategy = require("passport-google-oauth2").Strategy;
 passport_1.default.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3678/google/callback",
+    callbackURL: "https://lawaj.onrender.com/google/callback",
     // callbackURL: environemtVariable.CALLBACKURL,
     passReqToCallback: true,
 }, (request, accessToken, refreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
