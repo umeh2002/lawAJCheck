@@ -30,7 +30,7 @@ router.route("/register-user").post(validatorHandler(createValidator), registerU
 router.route("/register-lawyer").post(validatorHandler(createLawyerValidator), registerLawyer);
 router.route("/sign-in").post(validatorHandler(signInValidator), signInUser);
 
-router.route("/sign-in").post(validatorHandler(signInLawyerValidator), signInLawyer);
+router.route("/sign-in-lawyer").post(validatorHandler(signInLawyerValidator), signInLawyer);
 
 router
   .route("/:token/change-password")
