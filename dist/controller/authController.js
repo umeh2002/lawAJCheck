@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateAvatar = exports.deleteUser = exports.getAll = exports.changePassword = exports.resetPassword = exports.verifyUser = exports.signInLawyer = exports.signInUser = exports.registerLawyer = exports.registerUser = void 0;
+exports.updateAvatar = exports.deleteUser = exports.getAll = exports.change = exports.resetPassword = exports.verifyUser = exports.signInLawyer = exports.signInUser = exports.registerLawyer = exports.registerUser = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -245,7 +245,7 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.resetPassword = resetPassword;
-const changePassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const change = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { token } = req.params;
         const { password } = req.body;
@@ -288,7 +288,7 @@ const changePassword = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.changePassword = changePassword;
+exports.change = change;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.authModel.findMany({});

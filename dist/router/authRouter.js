@@ -16,7 +16,7 @@ router.route("/sign-in").post((0, validatorHandler_1.default)(validator_1.signIn
 router.route("/sign-in-lawyer").post((0, validatorHandler_1.default)(validator_1.signInLawyerValidator), authController_1.signInLawyer);
 router
     .route("/:token/change-password")
-    .patch((0, validatorHandler_1.default)(validator_1.changeValidator), authController_1.changePassword);
+    .patch((0, validatorHandler_1.default)(validator_1.changeValidator), authController_1.change);
 router
     .route("/reset-password")
     .patch((0, validatorHandler_1.default)(validator_1.resetValidator), authController_1.resetPassword);

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  changePassword,
+  change,
   deleteUser,
   getAll,
   registerLawyer,
@@ -34,7 +34,7 @@ router.route("/sign-in-lawyer").post(validatorHandler(signInLawyerValidator), si
 
 router
   .route("/:token/change-password")
-  .patch(validatorHandler(changeValidator), changePassword);
+  .patch(validatorHandler(changeValidator), change);
 router
   .route("/reset-password")
   .patch(validatorHandler(resetValidator), resetPassword);

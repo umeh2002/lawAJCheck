@@ -237,7 +237,7 @@ export const resetPassword = async (req: Request, res: Response) => {
   }
 };
 
-export const changePassword = async (req: Request, res: Response) => {
+export const change = async (req: Request, res: Response) => {
   try {
     const { token } = req.params;
     const { password } = req.body;
