@@ -140,7 +140,7 @@ export const signInLawyer = async (req: Request, res: Response) => {
           if (user.verified && user.token === "") {
             const token = jwt.sign({ id: user.id }, "secret");
   
-            req.headers.authorization = `Bearer ${token}`;
+           
   
             return res.status(201).json({
               message: "success",

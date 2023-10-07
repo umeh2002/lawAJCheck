@@ -20,7 +20,7 @@ const myPic = multer().single("image");
 
 const router = Router();
 
-router.route("/:userID/create-law").post(verification,myPic, createLaw);
+router.route("/:userID/create-law").post(myPic, createLaw);
 router.route("/view-all").get(viewAll);
 router.route("/:lawID/view-one").get(viewOne);
 router.route("/:lawID/update-law").patch(updateLaw);

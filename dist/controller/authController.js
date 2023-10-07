@@ -146,7 +146,6 @@ const signInLawyer = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             if (check) {
                 if (user.verified && user.token === "") {
                     const token = jsonwebtoken_1.default.sign({ id: user.id }, "secret");
-                    req.headers.authorization = `Bearer ${token}`;
                     return res.status(201).json({
                         message: "success",
                         data: token,
