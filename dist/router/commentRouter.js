@@ -6,4 +6,5 @@ const router = (0, express_1.Router)();
 router.route("/:userID/:lawID/create-comment").post(commentController_1.createComment);
 router.route("/:userID/:commentID/delete-comment").delete(commentController_1.deleteComment);
 router.route("/view-comment").get(commentController_1.viewAllComments);
+router.route("/view-comment").get(commentController_1.viewAllComments);
 exports.default = router;
